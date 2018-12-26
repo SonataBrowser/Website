@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -12,49 +12,26 @@
     <!-- Bulma Version 0.7.2-->
     <link rel="stylesheet" href="./css/bulma.min.css" />
     <link rel="stylesheet" href="./css/clock.css" />
-    
-    <!--style type="text/css">
-        html,
-        body {
-            font-family: 'Open Sans';
-            }
-        img {
-            padding: 5px;
-            border: 1px solid #ccc;
-            }
-    </style-->
-
-    <style type="text/css">
-    #is-size-1
-    {        font-size:	5rem;
-    }
-
-    </style>
-
 </head>
 
 <body>
     <section class="hero is-fullheight is-default is-bold">
-        <div class="hero-head ">
+        <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
                         <a class="navbar-item" href="../">
-						        <img src=".\Resources\SonataPageLogo.png" alt="Logo" />
+						        <img src="./resources/SonataPageLogo.png" alt="Logo" />
 		  </a>
 		  
                         <span class="navbar-burger burger" data-target="navbarMenu">
-						
-            <span></span>
+			            <span></span>
                         <span></span>
                         <span></span>
                         </span>
                     </div>
                     <div id="navbarMenu" class="navbar-menu" >
                         <div class="navbar-start">
-
-                                <div id="navbarMenu" class="navbar-menu">
-                                        <div class="navbar-end">
                                             <a href="http://forum.sonatabrowser.com" class="navbar-item is-active">
                                                     Home
                                                 </a>
@@ -91,8 +68,7 @@
                                                 </div>
 
                                               
-                                        </div>
-                                    </div>
+                                    
                         </div>
                     </div>
                 </div>
@@ -155,21 +131,10 @@
                                   <h1 class="subtitle is-5">
                                         Till then, help us shape your browser to be.
                                       </h1>
-                            
-                            <!--figure class="image is-4by3">
-                            Road map countdown:
-                                <!--img src="https://picsum.photos/800/600/?random" alt="Description">
-                            </figure-->
                         </div>
-                        
                     </div>
-                    
                 </div>
-             
             </div>
-
-            
-
         </div>
 
         <div class="hero-foot">
@@ -182,7 +147,8 @@
             </div>
         </div>
     </section>
-    
+    <script src="./js/bulma.js"></script>
+   
     <script>
         function getTimeRemaining(endtime) {
           var t = Date.parse(endtime) - Date.parse(new Date());
@@ -233,7 +199,6 @@
         //var deadline = new Date(Date.parse(new Date()) + 300 * 24 * 60 * 60 * 1000);
         initializeClock('clockdiv', deadline);
         </script>
-        
 </body>
 
 </html>
