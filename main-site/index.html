@@ -87,7 +87,22 @@
     <script src="./js/bulma.js"></script>
     <script src="./js/jquery-3.3.1.min.js"></script>
    
-   <script>
+<script>
+
+function HideMenu()
+{
+    var burger = document.querySelector('.burger');
+    var menu = document.querySelector('#'+burger.dataset.target);
+    burger.classList.remove('is-active');
+    menu.classList.remove('is-active');    
+}
+
+// Hide menu if click anywhere on the navigation bar.
+$('#navbarMenu').click(function() 
+   {
+       HideMenu();
+ });
+
 
 function LoadHome()
 {
@@ -114,7 +129,7 @@ $(document).ready(function()
        LoadHome(); // when clicked 'home' in the menu.
     });
 
-LoadHome() // when document is ready
+LoadHome(); // when document is ready
 
 }); 
    </script>
