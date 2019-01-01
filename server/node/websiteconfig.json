@@ -1,0 +1,7 @@
+{
+	  "port": 80
+	, "SSLPort": 443
+	, "Folder": "../main-site"
+	, "UseSSL": false
+	, "RedirectToSSL": true
+}
