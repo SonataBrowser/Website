@@ -1,17 +1,46 @@
 document.addEventListener("DOMContentLoaded", async function (event) {
-    async function LoadHome() {
-        const content = await fetch('home-body.html');
+    
+    let currentPageId = '';
+    const MapPages = 
+        {
+            'home' : { fileName : 'home-body.html'  , callback : function() { InitializeTimer();} }
+        ,   'about': { fileName : 'about-body.html' , callback : function() {} }
+       }
+
+
+    async function LoadPage(id, pushHistory) 
+    {
+        if (id == currentPageId)
+          return; // Don't process request if on the same page.
+        
+        const content = await fetch(MapPages[id].fileName);
+
         document.getElementById("hero-body").innerHTML = await content.text();
-        InitializeTimer();
+        currentPageId = id;
+        if (pushHistory)
+            history.pushState( id , null, '#' + id);
+
+         
+        if (MapPages[id].callback != null)
+            MapPages[id].callback();
     }
 
-    async function LoadAbout() {
-        const content = await fetch('about-body.html');
-        document.getElementById("hero-body").innerHTML = await content.text();
-    }
+    window.onpopstate = function(event) 
+    {
+        const pageID = event.state;
+        if (pageID == null)
+        {
+            history.back();
+        }
+        else
+        {
+            LoadPage(pageID, false);
+        }
+    };
+      
+    
 
     function InitializeTimer() {
-        //alert("initializing timer");
         function getTimeRemaining(endtime) {
             var t = Date.parse(endtime) - Date.parse(new Date());
             var seconds = Math.floor((t / 1000) % 60);
@@ -68,14 +97,33 @@ document.addEventListener("DOMContentLoaded", async function (event) {
         menu.classList.remove('is-active');
     }
 
-    await LoadHome(); // when document is ready
+
+    //     Load initial page from hash Url
+    let StartPage = 'home' // default to home
+
+    if(window.location.hash) 
+    {
+        const hash = window.location.hash.substring(1);
+        {
+            for (let key in MapPages) {
+                if (key == hash) 
+                {
+                    StartPage = key;
+                    break;
+                }
+            }
+        }
+    }
+
+
+    await LoadPage(StartPage, true); // when document is ready load first page
 
     document.getElementById("aboutPage").addEventListener("click", function (e) {
-        LoadAbout(); // when clicked 'about' in the menu.
+        LoadPage('about', true); // when clicked 'about' in the menu.
     });
 
     document.getElementById("home-page").addEventListener("click", function (e) {
-        LoadHome(); // when clicked 'home' in the menu.
+        LoadPage('home', true); // when clicked 'home' in the menu.
     });
 
     // The following code is based off a toggle menu by @Bradcomp
